@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @question.name %>
+</p>
+
+<p>
+  <strong>Answer type:</strong>
+  <%= @question.answer_type %>
+</p>
+
+<% if @question.answer_type == "Button" %>
+		<% if @question.answers.any? %>
+		  <h2>Answers</h2>
+			<% @question.answers.each do |answer| %>
+			  <p>
+			    <strong>Answer name:</strong>
+			    <%= answer.name %>
+			  </p>
+			 
+			<% end %>
+		<% end %>
+
+
+		<h2>Add an answer:</h2>
+		<%= form_with(model: [ @question, @question.answers.build ], local: true) do |form| %>
+		  <p>
+		    <%= form.label :name %><br>
+		    <%= form.text_field :name %>
+		  </p>
+		  
+		  <p>
+		    <%= form.submit %>
+		  </p>
+		<% end %>
+<% end %>
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

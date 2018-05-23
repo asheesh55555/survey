@@ -1,0 +1,7 @@
+<h3>Please create questions and answers before start tthe survey</h3>
+<%= link_to 'create new questions', new_question_path %>
+<h1>Enter your zipcode...</h1>
+
+<%= render 'form', zip_code: @zip_code %>
+
+<%= link_to 'Back', zip_codes_path %>

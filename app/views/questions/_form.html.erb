@@ -1,0 +1,49 @@
+<%= form_with(model: question, local: true) do |form| %>
+  <% if question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :question_name %>
+  </div>
+
+ <!--  <div class="field">
+    <%#= form.label :submit_answer_using_button %>
+    <%#= form.text_field :answer_type, id: :question_answer_type %>
+    <%#= form.radio_button :answer_type, 'by_button' %> 
+  </div>
+
+  <div class="field">
+    <%#= form.label :submit_answer_using_input_field %>
+    <%#= form.text_field :answer_type, id: :question_answer_type %>
+    <%#= form.radio_button :answer_type, 'by_input' %> 
+  </div> -->
+
+   <div class="field">
+    <%= form.label :submit_answer_using %>
+    <%#= form.text_field :answer_type, id: :question_answer_type %>
+    <%#= form.select :answer_type, [['Button', "Button"], ['Input field', 'Input field']]
+ %> 
+
+   <select name="question[answer_type]" required >
+    <option disabled selected value> -- select an option -- </option>
+    <option value="Button">Button</option>
+    <option value="Input field">Input field</option>
+    
+  </select>
+
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

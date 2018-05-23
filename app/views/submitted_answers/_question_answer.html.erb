@@ -1,0 +1,21 @@
+<h2><%= question.name %></h2><br>
+<% if question.answer_type == "Button" %>
+
+		<% question.answers.each do |answer| %>
+			<%= form_for :answer, url: wizard_path, method: :put do |f| %>
+			  <%= hidden_field_tag 'answer', answer.name  %>
+			  <%= hidden_field_tag 'question_id', question.id %>
+			  <%= f.submit "#{answer.name}" %>
+		<% end %>
+
+	<% end %>
+
+<% else %> 
+
+  <%= form_for :answer, url: wizard_path, method: :put do |f| %>
+		  <%= text_field_tag 'answer', nil, placeholder: ' '  %>
+		  <%= hidden_field_tag 'question_id', question.id %>
+		  <%= f.submit "submit" %>
+	<% end %>
+
+<% end %>
