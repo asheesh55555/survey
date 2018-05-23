@@ -1,7 +1,13 @@
-<h3>Please create questions and answers before start tthe survey</h3>
-<%= link_to 'create new questions', new_question_path %>
-<h1>Enter your zipcode...</h1>
+<% if Question.all.any? && Answer.all.any? %>
 
-<%= render 'form', zip_code: @zip_code %>
+		<h1>Enter your zipcode...</h1>
 
-<%= link_to 'Back', zip_codes_path %>
+		<%= render 'form', zip_code: @zip_code %>
+
+		
+
+
+<% else %>
+    <h1> First admin need to create Question and Answer then survey will start.............. </h1>
+<% end %>
+
